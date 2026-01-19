@@ -1,58 +1,38 @@
-# AI Appointment Scheduler Assistant 🗓️
+# SchedulerAI 🗓️
 
-An intelligent, end-to-end pipeline that converts natural language requests and images into structured, normalized appointment data.
+A neural-powered appointment extractor that converts natural language and document images into verified scheduling data using Gemini 2.0 Flash.
 
-## 🚀 Overview
-This project leverages the **Gemini 2.0 Flash** model to process scheduling requests through a 4-step neural pipeline:
-1.  **OCR/Text Extraction**: Converts noisy image inputs or raw text into clean strings.
-2.  **Entity Extraction**: Identifies key components like date phrases, time, and medical departments.
-3.  **Temporal Normalization**: Maps relative terms (e.g., "next Friday") to ISO 8601 formats in the `Asia/Kolkata` timezone.
-4.  **Structured Output**: Generates a professional, human-readable appointment slip with a final JSON payload.
+## 🚀 Local Deployment (Host at 127.0.0.1:5500)
 
-## 🛠️ Features
-- **Multi-Modal Input**: Supports both direct text descriptions and image uploads (OCR).
-- **Intelligent Guardrails**: Detects ambiguity and requests clarification if critical details are missing.
-- **Real-world UI**: Transforms raw data into a physical-style "Appointment Ticket."
-- **Live Pipeline Visualizer**: Real-time monitoring of each processing stage.
-
-## 💻 How to Host Locally (VS Code)
-
-Follow these steps to get the project running on your local machine:
+Because this project uses React and TypeScript (`.tsx`), a simple file server isn't enough. We use **Vite** for high-performance local development.
 
 ### 1. Prerequisites
-- **VS Code**: [Download here](https://code.visualstudio.com/).
-- **Live Server Extension**: Install the "Live Server" extension by Ritwick Dey from the VS Code Marketplace.
+- [Node.js](https://nodejs.org/) (Version 18 or higher) installed on your machine.
 
-### 2. Clone the Project
-Open your terminal and run:
+### 2. Installation
+Open your terminal in the project folder and run:
 ```bash
-git clone <your-repository-url>
-cd <project-folder-name>
+npm install
 ```
 
-### 3. Open in VS Code
-```bash
-code .
+### 3. Setup API Key
+Create a file named `.env` in the root folder and add your key:
+```env
+VITE_API_KEY=your_gemini_api_key_here
 ```
 
-### 4. Setup API Key
-The application expects a Google Gemini API Key. Since the app uses `process.env.API_KEY`, for local development without a build tool, you can either:
-- **Option A (Recommended for Dev)**: Open `services/geminiService.ts` and temporarily replace `process.env.API_KEY` with your actual key string (Note: Do not commit your key to GitHub!).
-- **Option B (Environment Variables)**: Use a tool like `Vite` or `Webpack` if you plan to scale the project.
+### 4. Launch Project
+Run the development server:
+```bash
+npm run dev
+```
+The app will automatically start at: **http://127.0.0.1:5500**
 
-### 5. Launch the App
-1.  Open `index.html`.
-2.  Right-click anywhere in the file editor.
-3.  Select **"Open with Live Server"**.
-4.  The app will automatically launch in your default browser at `http://127.0.0.1:5500`.
-
-## 📂 Project Structure
-- `index.html`: Main entry point and dependency management via ESM.
-- `index.tsx`: React mounting logic.
-- `App.tsx`: Main dashboard and state management.
-- `services/`: Contains `geminiService.ts` for AI logic.
-- `components/`: Modular UI components (Input, Slip, Visualizer).
-- `types.ts`: TypeScript interfaces for the pipeline data.
+## 🏗️ Neural Pipeline
+1. **OCR Stage**: Extracts raw strings from noisy image inputs.
+2. **Extraction Stage**: Identifies named entities (Dept, Date, Time).
+3. **Normalization Stage**: Converts relative phrases (e.g., "next week") to ISO 8601.
+4. **Validation Stage**: Applied guardrails for temporal ambiguity.
 
 ---
-**Note**: This project was developed as part of an AI Engineering Internship focus area on OCR, Entity Extraction, and Data Normalization.
+Developed as a focus area for AI Engineering: Entity Extraction & Data Normalization.

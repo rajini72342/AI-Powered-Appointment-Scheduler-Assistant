@@ -6,7 +6,8 @@ export const processAppointmentRequest = async (
   input: string | { base64: string; mimeType: string },
   currentDate: string
 ): Promise<PipelineResponse> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+  // Always use a named parameter for the API key and use process.env.API_KEY directly as per guidelines.
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   
   const systemInstruction = `
     You are an expert AI Scheduler Assistant. Your task is to process appointment requests through a 4-step pipeline:
@@ -103,6 +104,7 @@ export const processAppointmentRequest = async (
     }
   });
 
+  // Extract text output using the .text property as per guidelines.
   const jsonStr = response.text.trim();
   return JSON.parse(jsonStr) as PipelineResponse;
 };
