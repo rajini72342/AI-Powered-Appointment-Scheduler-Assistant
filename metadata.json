@@ -1,0 +1,7 @@
+{
+  "name": " AI Appointment Scheduler Assistant",
+  "description": "An end-to-end pipeline for parsing appointment requests from text or images using OCR, entity extraction, and normalization into structured JSON.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
